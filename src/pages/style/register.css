@@ -1,0 +1,99 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    min-height: 100vh;
+}
+.RegisterForm {
+    background-image: url(../../../img/3.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0px auto;
+    
+    position: absolute;
+    min-height: 100vh;
+    width: 100%;
+    text-align: center;
+}
+.registerForm>h1 {
+    padding: 30px;
+}
+
+.regForm {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    width: 80%;
+    background-color: darkgrey;
+}
+
+.firstReg, .secReg, .thirdReg, .fourReg, .fiveReg{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    
+}
+.firstReg > label, .firstReg > select , .secReg > label, .secReg >div> select, .thirdReg>label, .thirdReg>select, .fourReg>label, .fourReg>select{
+    padding: 5px;
+    margin: 3px;
+}
+.fiveReg > input {
+    padding: 6px;
+    border-radius: 7px;
+
+}
+
+
+/* POPUP REGISTER CSS */
+
+#demo {
+    display: none;
+}
+
+.popUpBack {
+    width: 100%;
+    min-height: 100vh;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+}
+#popUp1 {
+    display : block;
+}
+    .popUpRegister1 ,.popUpRegister2{
+        /* display: block; */
+        padding: 13px;
+        width:400px;
+        height: fit-content;
+        background: white;
+        position: absolute;
+        top:16%;
+        left:35%;
+        border-radius: 20px;
+        background-color: white;
+        /* backdrop-filter: blur(8px); */
+    }
+.in-wid90 {
+    width: 95%;
+
+}
+.in-wid40 {
+    width: 45%;
+}
+.in-wid30 {
+    width: 32%;
+}
+.popUpRegister1> * , .popUpRegister2 > *{
+    margin: 7px auto;
+    padding: 3px 5px;
+    text-align: center;
+    align-items: center;
+
+}
+    #popUp2 {
+        display: none;
+    }

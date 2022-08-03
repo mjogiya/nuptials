@@ -1,0 +1,13 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    min-height: 100vh;
+}
+.Profile {
+    /* padding: 100px 0px 0px 0px; */
+}
+#SecondForm, #ThirdForm {
+    display: none;
+}
