@@ -32,8 +32,8 @@ const Profile = () => {
                     <h1> Finilize Your Profile </h1>
                     
                     <div>
-                            <input type="text" placeholder="City you live in"/>
-                                <br/>
+                            
+                               
                             <label>Do you live with your Family?</label> 
                                 <input type="radio" name="family" value="Yes" /> Yes
                                 <input type="radio" name="family" value="No" /> No
@@ -164,7 +164,7 @@ const Profile = () => {
                             <input type="button" value="SUBMIT"/>
 
                     </div>
-        {/* Third Form ended  */}
+        {/* Third Form ended */}
                         </form>
 
 

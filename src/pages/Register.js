@@ -1,10 +1,13 @@
 import './style/register.css';
 import {useNavigate}
     from 'react-router-dom';
-// import Profile from './Profile.js';
-    const openForm = () => {
-    document.getElementById("demo").style.display= "block";
-}
+import {useState} from "react";
+import Axios from 'axios';
+
+
+// const openForm = () => {
+//     document.getElementById("demo").style.display= "block";
+// }
 
 const changeForm = () => {
     document.getElementById("popUp1").style.display="none";
@@ -16,9 +19,31 @@ const backForm = () => {
     document.getElementById("popUp1").style.display="block";
 }
 
-    
 
 const Register = () => {
+    
+    
+    const [lookingfor, setLookingfor] = useState("");
+    const [startage, setStartage] = useState("");
+    const [endage, setEndage] = useState("");
+    const [religion, setReligion] = useState("");
+    const [mothertong, setMothertong] = useState("");
+    const submitData = () => {
+       
+        Axios.post("http://localhost:3001/register/new", {
+            lookingfor1: lookingfor ,
+            startage1: startage,
+            endage1: endage,
+            religion1: religion,
+            mothertong1: mothertong
+        }).then(() => {
+            alert("inserted :)");
+        }).catch((err) => {
+            console.log(err);
+        });
+    };    
+
+
     const navigate = useNavigate();
     const profile = () => {
         navigate('/register/profile');
@@ -41,9 +66,10 @@ const Register = () => {
                             {/* First column */}
                              <div className="firstReg"> 
                                 <label>You are looking for</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example" onChange={(e) => {setLookingfor(e.target.value)}}>
+                                    <option selected>Select</option>
                                     <option value="Male">Male</option>
-                                    <option selected value="Female">Female</option>
+                                    <option value="Female">Female</option>
                                     
                                 </select>
                              </div>
@@ -52,7 +78,7 @@ const Register = () => {
                             <div className='secReg'>
                                 <label>Age Between</label>
                                 <div>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example"  onChange={(e) => {setStartage(e.target.value)}}>
                                     <option selected>Select the Age</option>
                                     <option value="19">19</option>
                                     <option value="20">20</option>
@@ -76,7 +102,7 @@ const Register = () => {
 
                                 <label> TO </label>
 
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example"  onChange={(e) => {setEndage(e.target.value)}}>
                                     <option selected>Select the Age</option>
                                     <option value="19">19</option>
                                     <option value="20">20</option>
@@ -103,7 +129,7 @@ const Register = () => {
                             {/* Third column */}
                             <div className="thirdReg">
                                 <label>Of Religion</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example"  onChange={(e) => {setReligion(e.target.value)}}>
                                     <option selected>Select the Religion</option>
                                     <option value="Hindu">Hindu</option>
                                     <option value="Muslim">Muslim</option>
@@ -113,7 +139,7 @@ const Register = () => {
                             {/* Fourth column */}
                             <div className="fourReg">
                                 <label>Mother Tounge</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" aria-label="Default select example"  onChange={(e) => {setMothertong(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="Hindi">Hindi</option>
                                     <option value="Gujarati">Gujarati</option>
@@ -129,7 +155,7 @@ const Register = () => {
                             {/* Fifth column */}
                             <div className='fiveReg'>
                                 
-                                <input type="button" value="Find Match" onClick={openForm}/>
+                                <input type="submit" value="Find Match" onClick={submitData}/>
                             </div>
                         </div>
                     </form>
@@ -143,7 +169,7 @@ const Register = () => {
                     <h3>Let's setup your account.</h3>
                         <label>This profile is for </label>
                         <br/>
-                        <select class="form-select in-wid90" aria-label="Default select example">
+                        <select class="form-select in-wid90" aria-label="Default select example" name="profilefor">
                                     <option selected>Select</option>
                                     <option value="MySelf">MySelf</option>
                                     <option value="Son">Son</option>
@@ -157,15 +183,19 @@ const Register = () => {
                         <br/>
                             <label>Your  Name</label>
                         <br/>
-                            <input type="text" placeholder="First Name" className="in-wid40"/>
+                            <input type="text" placeholder="First Name" className="in-wid40" name="firstn"/>
         
-                            <input type="text" placeholder="Last Name" className="in-wid40"/>
+                            <input type="text" placeholder="Last Name" className="in-wid40" name="lastn"/>
                         
                         <br/>
-
+                            <label>Gender</label>
+                        <br/>
+                            &emsp; <input type="radio" name="gender" />&nbsp;Male &emsp;
+                            <input type="radio" name="gender" />&nbsp;Female
+                        <br/>
                         <label>Religion</label>
                         <br/>
-                        <select class="form-select in-wid90" aria-label="Default select example">
+                        <select class="form-select in-wid90" aria-label="Default select example" name="religion">
                             <option selected>Select the Religion</option>
                             <option value="Hindu">Hindu</option>
                             <option value="Muslim">Muslim</option>
@@ -173,7 +203,7 @@ const Register = () => {
                         <br/>
                         <label>Mother Tounge</label>
                         <br/>
-                                <select class="form-select in-wid90" aria-label="Default select example">
+                                <select class="form-select in-wid90" aria-label="Default select example" name="mothertong">
                                     <option selected>Select</option>
                                     <option value="Hindi">Hindi</option>
                                     <option value="Gujarati">Gujarati</option>
@@ -199,99 +229,20 @@ const Register = () => {
                     
                         <label>Enter the Email ID</label>
                         <br/>
-                        <input type="text" name="email" className="in-wid90"/>
+                        <input type="text" name="email" className="in-wid90" />
+                        <br/>
+                        <label>Enter Mobile number </label>
+                        <br/>
+                        <input type="number" name="mobile" className="in-wid90"/>
                         <br/>
                         <label>Enter Date of Birth</label>
                         <br/>
+                        <input type="date" name="dob" className='in-wid90'/>
                         
-                        <select class="form-select in-wid30" aria-label="Default select example">
-                                    <option selected>Day</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                </select>
-
-
-                                <select class="form-select in-wid30" aria-label="Default select example">
-                                    <option selected>Month</option>
-                                    <option value="January">January</option>
-                                    <option value="Febuary">Febuary</option>
-                                    <option value="March">March</option>
-                                    <option value="Aprli">Aprli</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="Octomber">Octomber</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
-                                </select>
-
-                                <select class="form-select in-wid30" aria-label="Default select example">
-                                    <option selected>Year</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                </select>
                                 <br/>
                                 <label>Where do you live ?</label>
                                 <br/>
-                                <select class="form-select in-wid90" aria-label="Default select example">
+                                <select class="form-select in-wid90" aria-label="Default select example" name="city"> 
                                     <option selected>Select City</option>
                                     <option value="Rajkot">Rajkot</option>
                                     <option value="Ahmedabad">Ahmedabad</option>
@@ -309,15 +260,8 @@ const Register = () => {
                             <input type="button" value="Submit" onClick={profile}/> 
 
                             {/* Router created  */}
-
-                           
-
-
-
                 </div>
                 {/* second form ends  */}
-
-
                     </form>
 </div>
 {/* popup registerForm ends  */}
