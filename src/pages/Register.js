@@ -5,9 +5,9 @@ import {useState} from "react";
 import Axios from 'axios';
 
 
-// const openForm = () => {
-//     document.getElementById("demo").style.display= "block";
-// }
+const openForm = () => {
+    document.getElementById("demo").style.display= "block";
+}
 
 const changeForm = () => {
     document.getElementById("popUp1").style.display="none";
@@ -41,6 +41,7 @@ const Register = () => {
         }).catch((err) => {
             console.log(err);
         });
+        openForm();
     };    
 
 
@@ -155,7 +156,7 @@ const Register = () => {
                             {/* Fifth column */}
                             <div className='fiveReg'>
                                 
-                                <input type="submit" value="Find Match" onClick={submitData}/>
+                                <input type="button" value="Find Match" onClick={submitData}/>
                             </div>
                         </div>
                     </form>
