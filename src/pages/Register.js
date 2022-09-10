@@ -21,16 +21,13 @@ const backForm = () => {
 
 
 const Register = () => {
-    
-    
     const [lookingfor, setLookingfor] = useState("");
     const [startage, setStartage] = useState("");
     const [endage, setEndage] = useState("");
     const [religion, setReligion] = useState("");
     const [mothertong, setMothertong] = useState("");
-    const submitData = () => {
-       
-        Axios.post("http://localhost:3001/register/new", {
+    const submitMatchData = () => {
+        Axios.post("http://localhost:3004/register/findmatch", {
             lookingfor1: lookingfor ,
             startage1: startage,
             endage1: endage,
@@ -46,7 +43,32 @@ const Register = () => {
 
 
     const navigate = useNavigate();
-    const profile = () => {
+    const [Profilefor, setProfilefor] = useState("");
+    const [firstName, setFirstname] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [gender, setGender] = useState("");
+    const [religionUser, setReligionUser] = useState("");
+    const [mothertongUser, setMothertongUser] = useState("");
+    const [email, setEmail] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [dob, setDob] = useState("");
+    const [city, setCity] = useState("");
+
+    const submitUserData = () => {
+        Axios.post("http://localhost:3004/register/newuser", {
+            Profilefor: Profilefor,
+            firstName: firstName,
+            lastName: lastName,
+            gender: gender,
+            religionUser: religionUser,
+            mothertongUser: mothertongUser,
+            email: email,
+            mobile: mobile,
+            dob: dob,
+            city: city
+        }).catch((err) => {
+            console.log(err);
+        });
         navigate('/register/profile');
     }
     
@@ -156,7 +178,7 @@ const Register = () => {
                             {/* Fifth column */}
                             <div className='fiveReg'>
                                 
-                                <input type="button" value="Find Match" onClick={submitData}/>
+                                <input type="button" value="Find Match" onClick={submitMatchData}/>
                             </div>
                         </div>
                     </form>
@@ -170,7 +192,7 @@ const Register = () => {
                     <h3>Let's setup your account.</h3>
                         <label>This profile is for </label>
                         <br/>
-                        <select class="form-select in-wid90" aria-label="Default select example" name="profilefor">
+                        <select class="form-select in-wid90" aria-label="Default select example" name="profilefor" onChange={(e) => {setProfilefor(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="MySelf">MySelf</option>
                                     <option value="Son">Son</option>
@@ -184,19 +206,22 @@ const Register = () => {
                         <br/>
                             <label>Your  Name</label>
                         <br/>
-                            <input type="text" placeholder="First Name" className="in-wid40" name="firstn"/>
+                            <input type="text" placeholder="First Name" className="in-wid40" name="firstn" onChange={(e) => {setFirstname(e.target.value)}}/>
         
-                            <input type="text" placeholder="Last Name" className="in-wid40" name="lastn"/>
+                            <input type="text" placeholder="Last Name" className="in-wid40" name="lastn" onChange={(e) => {setLastName(e.target.value)}}/>
                         
                         <br/>
                             <label>Gender</label>
                         <br/>
-                            &emsp; <input type="radio" name="gender" />&nbsp;Male &emsp;
-                            <input type="radio" name="gender" />&nbsp;Female
+                            <select class="form-select in-wid90" aria-label="Default select example" onChange={(e) => {setGender(e.target.value)}}>
+                                    <option selected>Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>       
+                            </select>
                         <br/>
                         <label>Religion</label>
                         <br/>
-                        <select class="form-select in-wid90" aria-label="Default select example" name="religion">
+                        <select class="form-select in-wid90" aria-label="Default select example" name="religion" onChange={(e) => {setReligionUser(e.target.value)}}>
                             <option selected>Select the Religion</option>
                             <option value="Hindu">Hindu</option>
                             <option value="Muslim">Muslim</option>
@@ -204,7 +229,7 @@ const Register = () => {
                         <br/>
                         <label>Mother Tounge</label>
                         <br/>
-                                <select class="form-select in-wid90" aria-label="Default select example" name="mothertong">
+                                <select class="form-select in-wid90" aria-label="Default select example" name="mothertong" onChange={(e) => {setMothertongUser(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="Hindi">Hindi</option>
                                     <option value="Gujarati">Gujarati</option>
@@ -230,20 +255,20 @@ const Register = () => {
                     
                         <label>Enter the Email ID</label>
                         <br/>
-                        <input type="text" name="email" className="in-wid90" />
+                        <input type="text" name="email" className="in-wid90" onChange={(e) => {setEmail(e.target.value)}}/>
                         <br/>
                         <label>Enter Mobile number </label>
                         <br/>
-                        <input type="number" name="mobile" className="in-wid90"/>
+                        <input type="text" name="mobile" className="in-wid90" onChange={(e) => {setMobile(e.target.value)}}/>
                         <br/>
                         <label>Enter Date of Birth</label>
                         <br/>
-                        <input type="date" name="dob" className='in-wid90'/>
+                        <input type="date" name="dob" className='in-wid90' onChange={(e) => {setDob(e.target.value)}}/>
                         
                                 <br/>
                                 <label>Where do you live ?</label>
                                 <br/>
-                                <select class="form-select in-wid90" aria-label="Default select example" name="city"> 
+                                <select class="form-select in-wid90" aria-label="Default select example" name="city" onChange={(e) => {setCity(e.target.value)}}> 
                                     <option selected>Select City</option>
                                     <option value="Rajkot">Rajkot</option>
                                     <option value="Ahmedabad">Ahmedabad</option>
@@ -251,14 +276,13 @@ const Register = () => {
                                     <option value="Jamnagar">Jamnagar</option>
                                     <option value="Tramba">Tramba</option>
                                     <option value="Surat">Surat</option>
-                                    
                                 </select>
                                 <br/>
                                 <br/>
                             <input type="button" value="Back" onClick={backForm}/>
 
 
-                            <input type="button" value="Submit" onClick={profile}/> 
+                            <input type="button" value="Submit" onClick={submitUserData}/> 
 
                             {/* Router created  */}
                 </div>
