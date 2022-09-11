@@ -19,6 +19,7 @@ body {
 }
 .registerForm>h1 {
     padding: 30px;
+    
 }
 
 .regForm {
@@ -29,7 +30,10 @@ body {
     align-items: center;
     padding: 20px;
     width: 80%;
-    background-color: darkgrey;
+    
+    border-radius: 20px;
+    backdrop-filter: blur(100px);
+    
 }
 
 .firstReg, .secReg, .thirdReg, .fourReg, .fiveReg{
@@ -71,18 +75,36 @@ body {
         height: fit-content;
         background: white;
         position: absolute;
-        top:16%;
+        top:5%;
         left:35%;
         border-radius: 20px;
         background-color: white;
         /* backdrop-filter: blur(8px); */
     }
 .in-wid90 {
+    margin: 10px 0;
     width: 95%;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    /* border-radius: 15px; */
+    padding: 20px 10px;
+    outline: none;
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
 
 }
 .in-wid40 {
-    width: 45%;
+    margin: 10px 0;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    /* border-radius: 15px; */
+    padding: 20px 10px;
+    outline: none;
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
 }
 .in-wid30 {
     width: 32%;
@@ -96,4 +118,23 @@ body {
 }
     #popUp2 {
         display: none;
+    }
+    .form-select{
+        outline: none;
+        border: none;
+        background: rgba(31, 29, 29, 0.1);
+    }
+    .popUpBack input[type="button"]{
+        background: pink;
+    color: black;
+    justify-content: center;
+    height: 30px;
+    margin: 10px 0;
+    align-items: center;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 20px 30px  ;
+    font-weight: bolder;
+    font-size: medium;
     }

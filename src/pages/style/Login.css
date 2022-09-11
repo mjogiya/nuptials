@@ -38,16 +38,26 @@ form {
     height: max-content;
 }
 .logInput {
-    margin: 5px auto;
-    width: 60%;
+    margin: 10px 0;
+    width: 100%;
     justify-content: center;
     align-items: center;
-    height: 30px;
+    height: 20px;
     /* border-radius: 15px; */
-    padding: 2px 5px;
+    padding: 20px 10px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 15px;
+    color: black;
 }
 .logBtn {
     width: 40%;
     height: 35px;
     border-radius: 15px;
+    outline: none;
+    border: none;
+}
+#checkbox{
+    font-weight: bolder;
 }

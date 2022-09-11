@@ -54,12 +54,18 @@ const submitProfile = () => {
 }
     return (
         <html>
-            <head><title>Profile Register | Nuptials</title></head>
+            <head><title>Profile Register | Nuptials</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+            </head>
             <body className="Profile">
+                
             {/* First form started */}
                         <form >
                 <div id="FirstForm">
                     <h1> Finilize Your Profile </h1>
+                    <br/>
+                    
+
                     <div>
                             <label>Do you live with your Family?</label> 
                             <select class="form-select" aria-label="Default select example" onChange={(e) => {setLivewith(e.target.value)}}>
@@ -146,7 +152,7 @@ const submitProfile = () => {
                             <br/>
                             <label>Enter Your Yearly income</label>
                             <br/>
-                            <input type="number" onChange={(e) => {setIncome(e.target.value)}}/>
+                            <input type="number" class="form-select" onChange={(e) => {setIncome(e.target.value)}}/>
                             <br/>
                             <input type="button" value="BACK" onClick={First}/>
                             <input type="button" value="NEXT" onClick={Third}/>
@@ -155,9 +161,9 @@ const submitProfile = () => {
         {/* third form about started  */}
                     <div id="ThirdForm">
                         <h1>Last thing, Discribe yourself in few words</h1>
-                        <label>Tell us about yourself</label>
+                        <label >Tell us about yourself</label>
                         <br/>
-                        <textarea onChange={(e) => {setAbout(e.target.value)}}>
+                        <textarea class="form-select" onChange={(e) => {setAbout(e.target.value)}}>
                         </textarea>
                         <br/>
                         <input type="button" value="BACK" onClick={Second}/>
