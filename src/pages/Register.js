@@ -3,11 +3,7 @@ import {useNavigate}
     from 'react-router-dom';
 import {useState} from "react";
 import Axios from 'axios';
-
-
-const openForm = () => {
-    document.getElementById("demo").style.display= "block";
-}
+import { BsXLg } from "react-icons/bs";
 
 const changeForm = () => {
     document.getElementById("popUp1").style.display="none";
@@ -18,9 +14,18 @@ const backForm = () => {
     document.getElementById("popUp2").style.display="none";
     document.getElementById("popUp1").style.display="block";
 }
+const closeForm = () => {
+    document.getElementById("demo").style.display= "none";
+}
+
+
 
 
 const Register = () => {
+    const openForm = () => {
+        document.getElementById("demo").style.display= "block";
+        submitMatchData();
+    }
     const [lookingfor, setLookingfor] = useState("");
     const [startage, setStartage] = useState("");
     const [endage, setEndage] = useState("");
@@ -38,9 +43,8 @@ const Register = () => {
         }).catch((err) => {
             console.log(err);
         });
-        openForm();
+        
     };    
-
 
     const navigate = useNavigate();
     const [Profilefor, setProfilefor] = useState("");
@@ -66,6 +70,10 @@ const Register = () => {
             mobile: mobile,
             dob: dob,
             city: city
+        }).then(() => {
+            localStorage.setItem('username', email);
+            localStorage.setItem('mobile', mobile);
+            console.log("data insterted ");
         }).catch((err) => {
             console.log(err);
         });
@@ -89,7 +97,7 @@ const Register = () => {
                             {/* First column */}
                              <div className="firstReg"> 
                                 <label>You are looking for</label>
-                                <select class="form-select" aria-label="Default select example" onChange={(e) => {setLookingfor(e.target.value)}}>
+                                <select className="form-select" aria-label="Default select example" onChange={(e) => {setLookingfor(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -101,7 +109,7 @@ const Register = () => {
                             <div className='secReg'>
                                 <label>Age Between</label>
                                 <div>
-                                <select class="form-select" aria-label="Default select example"  onChange={(e) => {setStartage(e.target.value)}}>
+                                <select className="form-select" aria-label="Default select example"  onChange={(e) => {setStartage(e.target.value)}}>
                                     <option selected>Select the Age</option>
                                     <option value="19">19</option>
                                     <option value="20">20</option>
@@ -125,7 +133,7 @@ const Register = () => {
 
                                 <label> TO </label>
 
-                                <select class="form-select" aria-label="Default select example"  onChange={(e) => {setEndage(e.target.value)}}>
+                                <select className="form-select" aria-label="Default select example"  onChange={(e) => {setEndage(e.target.value)}}>
                                     <option selected>Select the Age</option>
                                     <option value="19">19</option>
                                     <option value="20">20</option>
@@ -152,7 +160,7 @@ const Register = () => {
                             {/* Third column */}
                             <div className="thirdReg">
                                 <label>Of Religion</label>
-                                <select class="form-select" aria-label="Default select example"  onChange={(e) => {setReligion(e.target.value)}}>
+                                <select className="form-select" aria-label="Default select example"  onChange={(e) => {setReligion(e.target.value)}}>
                                     <option selected>Select the Religion</option>
                                     <option value="Hindu">Hindu</option>
                                     <option value="Muslim">Muslim</option>
@@ -162,7 +170,7 @@ const Register = () => {
                             {/* Fourth column */}
                             <div className="fourReg">
                                 <label>Mother Tounge</label>
-                                <select class="form-select" aria-label="Default select example"  onChange={(e) => {setMothertong(e.target.value)}}>
+                                <select className="form-select" aria-label="Default select example"  onChange={(e) => {setMothertong(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="Hindi">Hindi</option>
                                     <option value="Gujarati">Gujarati</option>
@@ -178,7 +186,7 @@ const Register = () => {
                             {/* Fifth column */}
                             <div className='fiveReg'>
                                 
-                                <input type="button" value="Find Match" onClick={submitMatchData}/>
+                                <input type="button" value="Find Match" onClick={openForm}/>
                             </div>
                         </div>
                     </form>
@@ -189,10 +197,14 @@ const Register = () => {
                     <form>
                 {/* First form starts  */}
                 <div className="popUpRegister1" id="popUp1">
-                    <h3>Let's setup your account.</h3>
+                    <div className='setIcon'>
+                        <h3>Let's setup your account.</h3>
+                        <BsXLg onClick={closeForm} className="rightIcon"/>
+                    </div>
+                        
                         <label>This profile is for </label>
                         <br/>
-                        <select class="form-select in-wid90" aria-label="Default select example" name="profilefor" onChange={(e) => {setProfilefor(e.target.value)}}>
+                        <select className="form-select in-wid90" aria-label="Default select example" name="profilefor" onChange={(e) => {setProfilefor(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="MySelf">MySelf</option>
                                     <option value="Son">Son</option>
@@ -213,7 +225,7 @@ const Register = () => {
                         <br/>
                             <label>Gender</label>
                         <br/>
-                            <select class="form-select in-wid90" aria-label="Default select example" onChange={(e) => {setGender(e.target.value)}}>
+                            <select className="form-select in-wid90" aria-label="Default select example" onChange={(e) => {setGender(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>       
@@ -221,7 +233,7 @@ const Register = () => {
                         <br/>
                         <label>Religion</label>
                         <br/>
-                        <select class="form-select in-wid90" aria-label="Default select example" name="religion" onChange={(e) => {setReligionUser(e.target.value)}}>
+                        <select className="form-select in-wid90" aria-label="Default select example" name="religion" onChange={(e) => {setReligionUser(e.target.value)}}>
                             <option selected>Select the Religion</option>
                             <option value="Hindu">Hindu</option>
                             <option value="Muslim">Muslim</option>
@@ -229,7 +241,7 @@ const Register = () => {
                         <br/>
                         <label>Mother Tounge</label>
                         <br/>
-                                <select class="form-select in-wid90" aria-label="Default select example" name="mothertong" onChange={(e) => {setMothertongUser(e.target.value)}}>
+                                <select className="form-select in-wid90" aria-label="Default select example" name="mothertong" onChange={(e) => {setMothertongUser(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="Hindi">Hindi</option>
                                     <option value="Gujarati">Gujarati</option>
@@ -251,8 +263,10 @@ const Register = () => {
 
                 {/* second form start  */}
                 <div className="popUpRegister2" id="popUp2">
-                    <h3>Give us some more Details</h3>
-                    
+                    <div className='setIcon'>
+                        <h3>Give us some more Details</h3>
+                        <BsXLg onClick={closeForm} className="rightIcon"/>
+                    </div>
                         <label>Enter the Email ID</label>
                         <br/>
                         <input type="text" name="email" className="in-wid90" onChange={(e) => {setEmail(e.target.value)}}/>
@@ -268,7 +282,7 @@ const Register = () => {
                                 <br/>
                                 <label>Where do you live ?</label>
                                 <br/>
-                                <select class="form-select in-wid90" aria-label="Default select example" name="city" onChange={(e) => {setCity(e.target.value)}}> 
+                                <select className="form-select in-wid90" aria-label="Default select example" name="city" onChange={(e) => {setCity(e.target.value)}}> 
                                     <option selected>Select City</option>
                                     <option value="Rajkot">Rajkot</option>
                                     <option value="Ahmedabad">Ahmedabad</option>
