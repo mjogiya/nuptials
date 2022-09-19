@@ -2,7 +2,7 @@ import './style/profile.css';
 // import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const First = () => {
     document.getElementById("FirstForm").style.display="block";
     document.getElementById("SecondForm").style.display="none";
@@ -24,6 +24,7 @@ const Third = () => {
 
 
 const Profile = () => {
+    const navigate = useNavigate();
     const [livewith, setLivewith] = useState("");
     const [maritalStatus, setMaritalStatus] = useState("");
     const [children, setChildren] = useState("");
@@ -51,6 +52,8 @@ const submitProfile = () => {
     }).catch((err) => {
         console.log(err);
     });
+    navigate('/login');
+
 };
     return (
         <html>
@@ -62,7 +65,7 @@ const submitProfile = () => {
             {/* First form started */}
                         <form >
                 <div id="FirstForm">
-                    <h1> Finilize Your Profile </h1>
+                    <h2> Finilize Your Profile </h2>
                     <br/>
                     
 
@@ -119,7 +122,7 @@ const submitProfile = () => {
         {/* First from ended  */}
         {/* second form education started  */}
                     <div id="SecondForm">
-                        <h1>Few Questions about your Educaion & Qualification</h1>
+                        <h2>Few Questions about your Educaion & Qualification</h2> <br/>
                         <label>Your Highest Qualification</label>
                         <br/>
                         <select className="form-select" aria-label="Default select example" onChange={(e) => {setQualification(e.target.value)}}>
@@ -161,10 +164,10 @@ const submitProfile = () => {
             {/* Second from ended  */}
         {/* third form about started  */}
                     <div id="ThirdForm">
-                        <h1>Last thing, Discribe yourself in few words</h1>
+                        <h2>Last thing, Discribe yourself in few words</h2> <br/>
                         <label >Tell us about yourself</label>
                         <br/>
-                        <textarea className="form-select" onChange={(e) => {setAbout(e.target.value)}}>
+                        <textarea rows={12} className="form-textarea" onChange={(e) => {setAbout(e.target.value)}}>
                         </textarea>
                         <br/>
                         <input type="button" value="BACK" onClick={Second}/>

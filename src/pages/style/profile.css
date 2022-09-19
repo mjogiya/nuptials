@@ -45,12 +45,24 @@ label{
     align-items: center;
     height: 40px;
     /* border-radius: 15px; */
+    padding: 0px 0px;
+    outline: none;
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
+}
+.form-textarea {
+    margin: 10px 0;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    /* height: 40px; */
+    /* border-radius: 15px; */
     padding: 0px 10px;
     outline: none;
     border: none;
     background: rgba(0, 0, 0, 0.1);
 }
-.Profile input[type="button"]{
+.Profile input[type="button"], .Profile input[type="submit"]{
     background: pink;
     color: black;
     justify-content: center;
