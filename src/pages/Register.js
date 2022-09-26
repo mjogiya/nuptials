@@ -55,6 +55,7 @@ const Register = () => {
     const [mothertongUser, setMothertongUser] = useState("");
     const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
+    const [password, setPassword] = useState("");
     const [dob, setDob] = useState("");
     const [city, setCity] = useState("");
 
@@ -68,6 +69,7 @@ const Register = () => {
             mothertongUser: mothertongUser,
             email: email,
             mobile: mobile,
+            password, password,
             dob: dob,
             city: city
         }).then(() => {
@@ -274,6 +276,10 @@ const Register = () => {
                         <label>Enter Mobile number </label>
                         <br/>
                         <input type="text" name="mobile" className="in-wid90" onChange={(e) => {setMobile(e.target.value)}}/>
+                        <br/>
+                        <label>Enter The Password </label>
+                        <br/>
+                        <input type="password" name="password" className="in-wid90" onChange={(e) => {setPassword(e.target.value)}}/>
                         <br/>
                         <label>Enter Date of Birth</label>
                         <br/>
