@@ -5,6 +5,13 @@
 body {
     min-height: 100vh;
 }
+.loginbutton > *{
+    /* color: white; */
+    text-align: right;
+    margin: 10px 10px auto auto;
+    top: 0px;
+    right: 0px;
+}
 .RegisterForm {
     background-image: url(../../../img/3.jpeg);
     background-position: center;
@@ -49,10 +56,10 @@ body {
     align-content: space-between;
     
 }
-.firstReg > label, .firstReg > select , .secReg > label, .secReg >div> select, .thirdReg>label, .thirdReg>select, .fourReg>label, .fourReg>select{
+/* .firstReg > label, .firstReg > select , .secReg > label, .secReg >div> select, .thirdReg>label, .thirdReg>select, .fourReg>label, .fourReg>select{
     padding: 5px;
     margin: 3px;
-}
+} */
 .fiveReg > input {
     padding: 6px;
     border-radius: 7px;
@@ -90,47 +97,37 @@ body {
     }
 .in-wid90 {
     margin: 10px 0;
-    width: 95%;
+    width: 100%;
+    padding: 3px;
     justify-content: center;
     align-items: center;
     height: 30px;
     /* border-radius: 15px; */
     padding: 20px 10px;
     outline: none;
-    border: none;
-    background: rgba(0, 0, 0, 0.1);
+    /* border: none; */
+    /* background: rgba(0, 0, 0, 0.1); */
+}
 
-}
-.in-wid40 {
-    margin: 10px 0;
-    width: 95%;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-    /* border-radius: 15px; */
-    padding: 20px 10px;
-    outline: none;
-    border: none;
-    background: rgba(0, 0, 0, 0.1);
-}
+
 .in-wid30 {
     width: 32%;
 }
 .popUpRegister1> * , .popUpRegister2 > *{
-    margin: 7px auto;
-    padding: 3px 5px;
-    text-align: center;
+    /* margin: 5px auto; */
+    /* padding: 3px 5px; */
+    /* text-align: center; */
     align-items: center;
 
 }
     #popUp2 {
         display: none;
     }
-    .form-select{
+    /* .form-select{
         outline: none;
         border: none;
         background: rgba(31, 29, 29, 0.1);
-    }
+    } */
     .popUpBack input[type="button"]{
         background: pink;
     color: black;

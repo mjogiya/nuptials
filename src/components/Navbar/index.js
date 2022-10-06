@@ -2,7 +2,7 @@ import React from "react";
 import { Nav, NavLink, NavMenu } 
     from "./NavbarElements";
   
-const Navbar = () => {
+const NavbarLogin = () => {
   return (
     <>
       <Nav>
@@ -20,4 +20,4 @@ const Navbar = () => {
   );
 };
   
-export default Navbar;
+export default NavbarLogin;

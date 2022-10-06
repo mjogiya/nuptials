@@ -1,9 +1,11 @@
 import './style/register.css';
-import {useNavigate}
+import {useNavigate, Link}
     from 'react-router-dom';
 import {useState} from "react";
 import Axios from 'axios';
 import { BsXLg } from "react-icons/bs";
+import NavbarLogin from '../components/Navbar/index';
+import Button from 'react-bootstrap/Button';
 
 const changeForm = () => {
     document.getElementById("popUp1").style.display="none";
@@ -31,6 +33,7 @@ const Register = () => {
     const [endage, setEndage] = useState("");
     const [religion, setReligion] = useState("");
     const [mothertong, setMothertong] = useState("");
+
     const submitMatchData = () => {
         Axios.post("http://localhost:3004/register/findmatch", {
             lookingfor1: lookingfor ,
@@ -86,10 +89,15 @@ const Register = () => {
         <html>
             <head><title>Register | Nuptials</title></head>
             <body>
-
+            {/* <NavbarLogin /> */}
 <div className="RegisterForm">
+            {/* <button > */}
+            {/* </button> */}
             
                 <div className="registerForm">
+                        <div className="loginbutton">
+                            <h5>Already a user? &nbsp;<Button variant="light">Login Here</Button> </h5>
+                        </div>
                         <h1>Welcome, Register for Nuptials</h1>
 
                         <h1>Tell us what you looking for? </h1>
@@ -189,6 +197,7 @@ const Register = () => {
                             <div className='fiveReg'>
                                 
                                 <input type="button" value="Find Match" onClick={openForm}/>
+
                             </div>
                         </div>
                     </form>
@@ -200,12 +209,12 @@ const Register = () => {
                 {/* First form starts  */}
                 <div className="popUpRegister1" id="popUp1">
                     <div className='setIcon'>
-                        <h3>Let's setup your account.</h3>
+                        <h3>Let's setup your account.</h3>    
                         <BsXLg onClick={closeForm} className="rightIcon"/>
                     </div>
                         
                         <label>This profile is for </label>
-                        <br/>
+                        {/* <br/> */}
                         <select className="form-select in-wid90" aria-label="Default select example" name="profilefor" onChange={(e) => {setProfilefor(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="MySelf">MySelf</option>
@@ -213,36 +222,33 @@ const Register = () => {
                                     <option value="Daughter">Daughter</option>
                                     <option value="Brother">Brother</option>
                                     <option value="Sister">Sister</option>
-                                    <option value="Marathi">Marathi</option>
-                                    <option value="Tamil">Tamil</option>
-                                    <option value="Telugu">Telugu</option>
                         </select>
-                        <br/>
+                        {/* <br/> */}
                             <label>Your  Name</label>
-                        <br/>
-                            <input type="text" placeholder="First Name" className="in-wid40" name="firstn" onChange={(e) => {setFirstname(e.target.value)}}/>
+                        {/* <br/> */}
+                            <input type="text" placeholder="First Name" className="in-wid90" name="firstn" onChange={(e) => {setFirstname(e.target.value)}}/>
         
-                            <input type="text" placeholder="Last Name" className="in-wid40" name="lastn" onChange={(e) => {setLastName(e.target.value)}}/>
+                            <input type="text" placeholder="Last Name" className="in-wid90" name="lastn" onChange={(e) => {setLastName(e.target.value)}}/>
                         
-                        <br/>
+                        {/* <br/> */}
                             <label>Gender</label>
-                        <br/>
+                        {/* <br/> */}
                             <select className="form-select in-wid90" aria-label="Default select example" onChange={(e) => {setGender(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>       
                             </select>
-                        <br/>
+                        {/* <br/> */}
                         <label>Religion</label>
-                        <br/>
+                        {/* <br/> */}
                         <select className="form-select in-wid90" aria-label="Default select example" name="religion" onChange={(e) => {setReligionUser(e.target.value)}}>
                             <option selected>Select the Religion</option>
                             <option value="Hindu">Hindu</option>
                             <option value="Muslim">Muslim</option>
                         </select>
-                        <br/>
+                        {/* <br/> */}
                         <label>Mother Tounge</label>
-                        <br/>
+                        {/* <br/> */}
                                 <select className="form-select in-wid90" aria-label="Default select example" name="mothertong" onChange={(e) => {setMothertongUser(e.target.value)}}>
                                     <option selected>Select</option>
                                     <option value="Hindi">Hindi</option>
@@ -254,7 +260,7 @@ const Register = () => {
                                     <option value="Tamil">Tamil</option>
                                     <option value="Telugu">Telugu</option>
                                 </select>
-                        <br/>
+                        {/* <br/> */}
 
                         <input type="button" value="NEXT" onClick={changeForm}/>
 
@@ -270,24 +276,24 @@ const Register = () => {
                         <BsXLg onClick={closeForm} className="rightIcon"/>
                     </div>
                         <label>Enter the Email ID</label>
-                        <br/>
-                        <input type="text" name="email" className="in-wid90" onChange={(e) => {setEmail(e.target.value)}}/>
-                        <br/>
+                        {/* <br/> */}
+                        <input type="text" name="email" placeholder="Enter Email address" className="in-wid90" onChange={(e) => {setEmail(e.target.value)}}/>
+                        {/* <br/> */}
                         <label>Enter Mobile number </label>
-                        <br/>
-                        <input type="text" name="mobile" className="in-wid90" onChange={(e) => {setMobile(e.target.value)}}/>
-                        <br/>
+                        {/* <br/> */}
+                        <input type="text" name="mobile" placeholder='Enter Mobile Number' className="in-wid90" onChange={(e) => {setMobile(e.target.value)}}/>
+                        {/* <br/> */}
                         <label>Enter The Password </label>
-                        <br/>
-                        <input type="password" name="password" className="in-wid90" onChange={(e) => {setPassword(e.target.value)}}/>
-                        <br/>
+                        {/* <br/> */}
+                        <input type="password" name="password" placeholder='Enter Password' className="in-wid90" onChange={(e) => {setPassword(e.target.value)}}/>
+                        {/* <br/> */}
                         <label>Enter Date of Birth</label>
-                        <br/>
+                        {/* <br/> */}
                         <input type="date" name="dob" className='in-wid90' onChange={(e) => {setDob(e.target.value)}}/>
                         
-                                <br/>
+                                {/* <br/> */}
                                 <label>Where do you live ?</label>
-                                <br/>
+                                {/* <br/> */}
                                 <select className="form-select in-wid90" aria-label="Default select example" name="city" onChange={(e) => {setCity(e.target.value)}}> 
                                     <option selected>Select City</option>
                                     <option value="Rajkot">Rajkot</option>
@@ -297,8 +303,10 @@ const Register = () => {
                                     <option value="Tramba">Tramba</option>
                                     <option value="Surat">Surat</option>
                                 </select>
-                                <br/>
-                                <br/>
+                                
+
+                                {/* <br/> */}
+                                {/* <br/> */}
                             <input type="button" value="Back" onClick={backForm}/>
 
 

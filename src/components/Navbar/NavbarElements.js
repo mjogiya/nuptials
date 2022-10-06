@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
 background: black;
-height: 85px;
+height: 35px;
 display: flex;
 // position: absolute;
 width: 100%;

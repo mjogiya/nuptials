@@ -1,7 +1,9 @@
 import './style/Login.css';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Axios from 'axios'
 import { useState } from 'react';
+import NavbarLogin from '../components/Navbar/index';
+
 const Login = () =>  {
     Axios.defaults.withCredentials = true
     const navigate = useNavigate();
@@ -14,7 +16,8 @@ const Login = () =>  {
           }).then((response) => {
               console.log(response);
               if (response.data.userLogedin) {
-                localStorage.setItem('isUserLogedIn', 'true')
+                localStorage.setItem('isUserLogedIn', 'true');
+                localStorage.setItem('email', response.data.result[0].email);
                 console.log("login Success!");
                 navigate('/dashboard')
               } else {
@@ -29,28 +32,29 @@ const Login = () =>  {
         <html>
             <head><title>Login | Nuptials</title></head>
             <body>
+            {/* <NavbarLogin /> */}
         <div className="logBody">
 
         <div className="login"> 
             
-            <h1>Welcome Back, Login to Nuptials</h1>
-            <br/><br/>
+            <h1>Welcome Back,<br/> Login to Nuptials</h1>
+            <br/>
             <form>
-                <lable className="logLabel">Email ID :</lable>
+                <label className="logLabel">Email ID :</label>
                 
                 <br/>
                 <input type="text" className="logInput" name='email' placeholder="Enter Your Registered Email ID" onChange={(e) => {
                           setEmail(e.target.value)
                         }}/>
-                <br/><br/><br/>
-                <lable className="logLabel">Password : </lable>
+                <br/>
+                <label className="logLabel">Password : </label>
                 <br/>
                 <input type="password" name='password' className="logInput" placeholder="Enter Your Password" onChange={(e) => {
                           setPassword(e.target.value)
                         }}/>
                 <br/><br/>
 
-                <input type="checkbox" name="save" /> <label id="checkbox">Save your login info ?</label>
+                <Link to="/register" >New User? Register</Link>
                 <br/><br/><br/>
                 <input className="logBtn" type="button" value="Login" onClick={userLogin}/>
                 

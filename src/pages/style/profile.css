@@ -5,9 +5,7 @@
 body {
     min-height: 100vh;
 }
-.Profile {
-    /* padding: 100px 0px 0px 0px; */
-}
+
 #SecondForm, #ThirdForm {
     display: none;
 }
@@ -21,12 +19,13 @@ body {
     border-radius: 20px;
     background: white;
     width: 450px;
-    height: 520px;
+    height: fit-content;
     position: absolute;
-    top: 10%;
+    top: 8%;
     bottom: 10%;
     right: 32%;
     padding: 30px;
+    display: block;
 }
 h1{
     bottom: 10%;
@@ -52,15 +51,15 @@ label{
 }
 .form-textarea {
     margin: 10px 0;
-    width: 95%;
+    width: 100%;
     justify-content: center;
     align-items: center;
     /* height: 40px; */
     /* border-radius: 15px; */
     padding: 0px 10px;
     outline: none;
-    border: none;
-    background: rgba(0, 0, 0, 0.1);
+    /* border: none; */
+    /* background: rgba(0, 0, 0, 0.1); */
 }
 .Profile input[type="button"], .Profile input[type="submit"]{
     background: pink;
@@ -83,7 +82,7 @@ label{
     width: 450px;
     height: fit-content;
     position: absolute;
-    top: 3%;
+    top: 8%;
     bottom: 10%;
     right: 32%;
     padding: 30px;
@@ -94,8 +93,16 @@ label{
     width: 450px;
     height: fit-content;
     position: absolute;
-    top: 20%;
+    top: 8%;
     bottom: 10%;
     right: 32%;
     padding: 30px;
+}
+.fileUpload {
+    padding: 3px;
+    /* margin: 10px 0; */
+    border: 1px solid black;
+    width: 100%;
+
+
 }
