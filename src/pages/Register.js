@@ -61,30 +61,50 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [dob, setDob] = useState("");
     const [city, setCity] = useState("");
-
-    const submitUserData = () => {
-        Axios.post("http://localhost:3004/register/newuser", {
-            Profilefor: Profilefor,
-            firstName: firstName,
-            lastName: lastName,
-            gender: gender,
-            religionUser: religionUser,
-            mothertongUser: mothertongUser,
-            email: email,
-            mobile: mobile,
-            password, password,
-            dob: dob,
-            city: city
-        }).then(() => {
-            localStorage.setItem('username', email);
-            localStorage.setItem('mobile', mobile);
-            console.log("data insterted ");
-        }).catch((err) => {
-            console.log(err);
-        });
-        navigate('/register/profile');
-    }
     
+    const submitUserData = () => {
+        if(Profilefor !== "" && firstName !== "" && lastName !== "" && gender !== "" && religionUser !== "" && mothertongUser !== "" && email !== "" && mobile !== "" && password !== "" && dob !== "" && city !== "") {
+            
+            Axios.post("http://localhost:3004/register/newuser", {
+                Profilefor: Profilefor,
+                firstName: firstName,
+                lastName: lastName,
+                gender: gender,
+                religionUser: religionUser,
+                mothertongUser: mothertongUser,
+                email: email,
+                mobile: mobile,
+                password, password,
+                dob: dob,
+                city: city
+            }).then(() => {
+                localStorage.setItem('username', email);
+                localStorage.setItem('mobile', mobile);
+                console.log("data insterted ");
+            }).catch((err) => {
+                console.log(err);
+            });
+            navigate('/register/profile');
+        } else {
+            alert("Please Fill out all feilds !");
+        }
+    }
+    var ageStarting = () => {
+        let newage = parseInt(startage);
+        let options = [];
+            for (let i = 19; i <= 45; i++ ) {
+                 options.push(<option value={i}>{i}</option>);
+            }
+        return options;
+    }
+    var ageEnding = () => {
+        let newage = parseInt(startage);
+        let options = [];
+            for (let i = startage; i <= newage+17; i++ ) {
+                 options.push(<option value={i}>{i}</option>);
+            }
+        return options;
+    }
     return (
         <html>
             <head><title>Register | Nuptials</title></head>
@@ -96,7 +116,7 @@ const Register = () => {
             
                 <div className="registerForm">
                         <div className="loginbutton">
-                            <h5>Already a user? &nbsp;<Button variant="light">Login Here</Button> </h5>
+                            <h5>Already a user? &nbsp;<Button variant="light" onClick={() => navigate('/login')}>Login Here</Button> </h5>
                         </div>
                         <h1>Welcome, Register for Nuptials</h1>
 
@@ -107,8 +127,8 @@ const Register = () => {
                             {/* First column */}
                              <div className="firstReg"> 
                                 <label>You are looking for</label>
-                                <select className="form-select" aria-label="Default select example" onChange={(e) => {setLookingfor(e.target.value)}}>
-                                    <option selected>Select</option>
+                                <select className="form-select" aria-label="Default select example" required onChange={(e) => {setLookingfor(e.target.value)}}>
+                                    <option selected disabled>Select</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                     
@@ -119,50 +139,18 @@ const Register = () => {
                             <div className='secReg'>
                                 <label>Age Between</label>
                                 <div>
-                                <select className="form-select" aria-label="Default select example"  onChange={(e) => {setStartage(e.target.value)}}>
-                                    <option selected>Select the Age</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                    <option value="31">31</option>
-                                    <option value="32">32</option>
-                                    <option value="33">33</option>
-                                    <option value="34">34</option>
-                                    <option value="35">35</option>
-                                    <option value="36">36</option>
+                                <select required className="form-select" aria-label="Default select example"  onChange={(e) => {setStartage(e.target.value)}}>
+                                    <option selected disabled>Select the Age</option>
+                                    {ageStarting()}
                                 </select>
 
                                 <label> TO </label>
 
-                                <select className="form-select" aria-label="Default select example"  onChange={(e) => {setEndage(e.target.value)}}>
-                                    <option selected>Select the Age</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                    <option value="31">31</option>
-                                    <option value="32">32</option>
-                                    <option value="33">33</option>
-                                    <option value="34">34</option>
-                                    <option value="35">35</option>
-                                    <option value="36">36</option>
+                                <select required className="form-select" aria-label="Default select example"  onChange={(e) => {setEndage(e.target.value)}}>
+                                    <option disabled selected>Select the Age</option>
+                                    {ageEnding()}
+                                    
+                                    
                                 </select>
                                 </div>
                             </div>
@@ -170,8 +158,8 @@ const Register = () => {
                             {/* Third column */}
                             <div className="thirdReg">
                                 <label>Of Religion</label>
-                                <select className="form-select" aria-label="Default select example"  onChange={(e) => {setReligion(e.target.value)}}>
-                                    <option selected>Select the Religion</option>
+                                <select required className="form-select" aria-label="Default select example"  onChange={(e) => {setReligion(e.target.value)}}>
+                                    <option disabled selected>Select the Religion</option>
                                     <option value="Hindu">Hindu</option>
                                     <option value="Muslim">Muslim</option>
                                 </select>
@@ -180,8 +168,8 @@ const Register = () => {
                             {/* Fourth column */}
                             <div className="fourReg">
                                 <label>Mother Tounge</label>
-                                <select className="form-select" aria-label="Default select example"  onChange={(e) => {setMothertong(e.target.value)}}>
-                                    <option selected>Select</option>
+                                <select required className="form-select" aria-label="Default select example"  onChange={(e) => {setMothertong(e.target.value)}}>
+                                    <option disabled selected>Select</option>
                                     <option value="Hindi">Hindi</option>
                                     <option value="Gujarati">Gujarati</option>
                                     <option value="Urdu">Urdu</option>
@@ -215,8 +203,8 @@ const Register = () => {
                         
                         <label>This profile is for </label>
                         {/* <br/> */}
-                        <select className="form-select in-wid90" aria-label="Default select example" name="profilefor" onChange={(e) => {setProfilefor(e.target.value)}}>
-                                    <option selected>Select</option>
+                        <select required className="form-select in-wid90" aria-label="Default select example" name="profilefor" onChange={(e) => {setProfilefor(e.target.value)}}>
+                                    <option disabled selected>Select</option>
                                     <option value="MySelf">MySelf</option>
                                     <option value="Son">Son</option>
                                     <option value="Daughter">Daughter</option>
@@ -226,31 +214,31 @@ const Register = () => {
                         {/* <br/> */}
                             <label>Your  Name</label>
                         {/* <br/> */}
-                            <input type="text" placeholder="First Name" className="in-wid90" name="firstn" onChange={(e) => {setFirstname(e.target.value)}}/>
+                            <input required type="text" placeholder="First Name" className="in-wid90" name="firstn" onChange={(e) => {setFirstname(e.target.value)}}/>
         
-                            <input type="text" placeholder="Last Name" className="in-wid90" name="lastn" onChange={(e) => {setLastName(e.target.value)}}/>
+                            <input required type="text" placeholder="Last Name" className="in-wid90" name="lastn" onChange={(e) => {setLastName(e.target.value)}}/>
                         
                         {/* <br/> */}
                             <label>Gender</label>
                         {/* <br/> */}
-                            <select className="form-select in-wid90" aria-label="Default select example" onChange={(e) => {setGender(e.target.value)}}>
-                                    <option selected>Select</option>
+                            <select required className="form-select in-wid90" aria-label="Default select example" onChange={(e) => {setGender(e.target.value)}}>
+                                    <option disabled selected>Select</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>       
                             </select>
                         {/* <br/> */}
                         <label>Religion</label>
                         {/* <br/> */}
-                        <select className="form-select in-wid90" aria-label="Default select example" name="religion" onChange={(e) => {setReligionUser(e.target.value)}}>
-                            <option selected>Select the Religion</option>
+                        <select required className="form-select in-wid90" aria-label="Default select example" name="religion" onChange={(e) => {setReligionUser(e.target.value)}}>
+                            <option disabled selected>Select the Religion</option>
                             <option value="Hindu">Hindu</option>
                             <option value="Muslim">Muslim</option>
                         </select>
                         {/* <br/> */}
                         <label>Mother Tounge</label>
                         {/* <br/> */}
-                                <select className="form-select in-wid90" aria-label="Default select example" name="mothertong" onChange={(e) => {setMothertongUser(e.target.value)}}>
-                                    <option selected>Select</option>
+                                <select required className="form-select in-wid90" aria-label="Default select example" name="mothertong" onChange={(e) => {setMothertongUser(e.target.value)}}>
+                                    <option disabled selected>Select</option>
                                     <option value="Hindi">Hindi</option>
                                     <option value="Gujarati">Gujarati</option>
                                     <option value="Urdu">Urdu</option>
@@ -277,25 +265,25 @@ const Register = () => {
                     </div>
                         <label>Enter the Email ID</label>
                         {/* <br/> */}
-                        <input type="text" name="email" placeholder="Enter Email address" className="in-wid90" onChange={(e) => {setEmail(e.target.value)}}/>
+                        <input required type="email" name="email" placeholder="Enter Email address" className="in-wid90" onChange={(e) => {setEmail(e.target.value)}}/>
                         {/* <br/> */}
                         <label>Enter Mobile number </label>
                         {/* <br/> */}
-                        <input type="text" name="mobile" placeholder='Enter Mobile Number' className="in-wid90" onChange={(e) => {setMobile(e.target.value)}}/>
+                        <input required type="number" name="mobile" placeholder='Enter Mobile Number' className="in-wid90" onChange={(e) => {setMobile(e.target.value)}}/>
                         {/* <br/> */}
                         <label>Enter The Password </label>
                         {/* <br/> */}
-                        <input type="password" name="password" placeholder='Enter Password' className="in-wid90" onChange={(e) => {setPassword(e.target.value)}}/>
+                        <input required type="password" name="password" placeholder='Enter Password' className="in-wid90" onChange={(e) => {setPassword(e.target.value)}}/>
                         {/* <br/> */}
                         <label>Enter Date of Birth</label>
                         {/* <br/> */}
-                        <input type="date" name="dob" className='in-wid90' onChange={(e) => {setDob(e.target.value)}}/>
+                        <input required type="date" name="dob" className='in-wid90' max="2004-12-31" onChange={(e) => {setDob(e.target.value)}}/>
                         
                                 {/* <br/> */}
                                 <label>Where do you live ?</label>
                                 {/* <br/> */}
-                                <select className="form-select in-wid90" aria-label="Default select example" name="city" onChange={(e) => {setCity(e.target.value)}}> 
-                                    <option selected>Select City</option>
+                                <select required className="form-select in-wid90" aria-label="Default select example" name="city" onChange={(e) => {setCity(e.target.value)}}> 
+                                    <option disabled selected>Select City</option>
                                     <option value="Rajkot">Rajkot</option>
                                     <option value="Ahmedabad">Ahmedabad</option>
                                     <option value="Porbandar">Porbandar</option>

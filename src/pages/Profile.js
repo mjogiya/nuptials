@@ -43,38 +43,43 @@ const Profile = () => {
 
     
 const submitProfile = async () => {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('livewith', livewith);
-    formData.append('maritalStatus', maritalStatus);
-    formData.append('children', children);
-    formData.append('diet', diet);
-    formData.append('subCommunity', subCommunity);
-    formData.append('qualification', qualification);
-    formData.append('workwith', workwith);
-    formData.append('profession', profession);
-    formData.append('income', income);
-    formData.append('about', about);
-    // formData.set('file',file);
-    // formData.append('fileName', fileName);
-    console.log(formData.file);
-    
-    console.log(file);
-    const config = {
-        headers: {
-          'content-type': 'multipart/form-data',
-        },
-      };
-    await Axios.post("http://localhost:3004/register/userdata", 
+    if(livewith !== "" && maritalStatus !== "" && children !== "" && diet !== "" && subCommunity !== "" && qualification !== "" && workwith !== "" && profession !== "" && income !== "" && about !== "" && file !== "") {
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('livewith', livewith);
+        formData.append('maritalStatus', maritalStatus);
+        formData.append('children', children);
+        formData.append('diet', diet);
+        formData.append('subCommunity', subCommunity);
+        formData.append('qualification', qualification);
+        formData.append('workwith', workwith);
+        formData.append('profession', profession);
+        formData.append('income', income);
+        formData.append('about', about);
+        // formData.set('file',file);
+        // formData.append('fileName', fileName);
+        console.log(formData.file);
+        
+        console.log(file);
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            },
+        };
+        await Axios.post("http://localhost:3004/register/userdata", 
         
         formData
-    ,config).then(() => {
-        // alert("inserted :)");
-    }).catch((err) => {
-        console.log(err);
-    });
-    navigate('/login');
-
+        ,config).then(() => {
+            // alert("inserted :)");
+        }).catch((err) => {
+            console.log(err);
+        });
+        navigate('/login');
+        
+    } else {
+        alert("Please Fill out all feilds !");
+    }
 };
     return (
         <html>
@@ -93,16 +98,16 @@ const submitProfile = async () => {
 
                     <div>
                             <label>Do you live with your Family?</label> 
-                            <select className="form-select" aria-label="Default select example" onChange={(e) => {setLivewith(e.target.value)}}>
-                                    <option selected > Select </option>
+                            <select required className="form-select" aria-label="Default select example" onChange={(e) => {setLivewith(e.target.value)}}>
+                                    <option disabled selected > Select </option>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                             </select>           
                             {/* <br/> */}
                             <label>Your Maritual Status</label>
                             {/* <br/> */}
-                            <select className="form-select" aria-label="Default select example" onChange={(e) => {setMaritalStatus(e.target.value)}}>
-                                    <option selected > Select </option>
+                            <select required className="form-select" aria-label="Default select example" onChange={(e) => {setMaritalStatus(e.target.value)}}>
+                                    <option disabled selected > Select </option>
                                     <option value="Never Married">Never Married</option>
                                     <option value="Divorced">Divorced</option>
                                     <option value="Widowed">Widowed</option>
@@ -110,15 +115,15 @@ const submitProfile = async () => {
                             {/* <br/> */}
                             <label>Do you have any children ?</label>
                             {/* <br/> */}
-                            <select className="form-select" aria-label="Default select example" onChange={(e) => {setChildren(e.target.value)}}>
-                                    <option selected > Select </option>
+                            <select required className="form-select" aria-label="Default select example" onChange={(e) => {setChildren(e.target.value)}}>
+                                    <option disabled selected > Select </option>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
                             </select>    
                             {/* <br/> */}
                             <label>Your Diet</label>
-                            <select className="form-select" aria-label="Default select example" onChange={(e) => {setDiet(e.target.value)}}>
-                                    <option selected> --Select--</option>
+                            <select required className="form-select" aria-label="Default select example" onChange={(e) => {setDiet(e.target.value)}}>
+                                    <option disabled selected> --Select--</option>
                                     <option value="Veg">Veg</option>
                                     <option value="Non-Veg">Non-Veg</option>
                                     <option value="Eggetarian">Eggetarian</option>
@@ -128,8 +133,8 @@ const submitProfile = async () => {
                             {/* <br/> */}
                             <label>Your Sub Community</label>
                             {/* <br/> */}
-                            <select className="form-select" aria-label="Default select example" onChange={(e) => {setSubcommunity(e.target.value)}}>
-                                    <option selected > --Select--</option>
+                            <select required className="form-select" aria-label="Default select example" onChange={(e) => {setSubcommunity(e.target.value)}}>
+                                    <option disabled selected > --Select--</option>
                                     <option value="Soni">Soni</option>
                                     <option value="Patel">Patel</option>
                                     <option value="Ahir">Ahir</option>
@@ -147,8 +152,8 @@ const submitProfile = async () => {
                         <h2>Few Questions about your Educaion & Qualification</h2> <br/>
                         <label>Your Highest Qualification</label>
                         {/* <br/> */}
-                        <select className="form-select" aria-label="Default select example" onChange={(e) => {setQualification(e.target.value)}}>
-                                    <option selected value=""> --Select--</option>
+                        <select required className="form-select" aria-label="Default select example" onChange={(e) => {setQualification(e.target.value)}}>
+                                    <option disabled selected value=""> --Select--</option>
                                     <option value="BCA">BCA</option>
                                     <option value="B.Tech(CE)">B.Tech(CE)</option>
                                     <option value="B.Tech(IT)">B.Text(IT)</option>
@@ -158,8 +163,8 @@ const submitProfile = async () => {
                         {/* <br/> */}
                         <label>You work with</label>
                         {/* <br/> */}
-                        <select className="form-select" aria-label="Default select example" onChange={(e) => {setWorkwith(e.target.value)}}>
-                                    <option selected value=""> --Select--</option>
+                        <select required className="form-select" aria-label="Default select example" onChange={(e) => {setWorkwith(e.target.value)}}>
+                                    <option disabled selected value=""> --Select--</option>
                                     <option value="Private Company">Private Company</option>
                                     <option value="Government">Government</option>
                                     <option value="Business">Business</option>
@@ -168,8 +173,8 @@ const submitProfile = async () => {
                             {/* <br/> */}
                             <label>Working as a </label>
                         {/* <br/> */}
-                        <select className="form-select" aria-label="Default select example" onChange={(e) => {setProfession(e.target.value)}}>
-                                    <option selected value=""> --Select--</option>
+                        <select required className="form-select" aria-label="Default select example" onChange={(e) => {setProfession(e.target.value)}}>
+                                    <option disabled selected value=""> --Select--</option>
                                     <option value="HR Manager">HR Manager</option>
                                     <option value="Team Head">Team Head</option>
                                     <option value="Senior Developer">Senior Developer</option>
@@ -178,7 +183,7 @@ const submitProfile = async () => {
                             {/* <br/> */}
                             <label>Enter Your Yearly income</label>
                             {/* <br/> */}
-                            <input type="number" className="form-select" onChange={(e) => {setIncome(e.target.value)}}/>
+                            <input required type="number" className="form-select" onChange={(e) => {setIncome(e.target.value)}}/>
                             {/* <br/> */}
                             <input type="button" value="BACK" onClick={First}/>
                             <input type="button" value="NEXT" onClick={Third}/>
@@ -189,11 +194,11 @@ const submitProfile = async () => {
                         <h2>Last thing, Discribe yourself in few words</h2> <br/>
                         <label >Tell us about yourself</label>
                         <br/>
-                        <textarea rows={5} className="form-textarea" onChange={(e) => {setAbout(e.target.value)}}>
+                        <textarea required rows={5} className="form-textarea" onChange={(e) => {setAbout(e.target.value)}}>
                         </textarea>
                         <label>Upload your Profile Picture</label>
 
-                                <input type="file" className='fileUpload' onChange={(e) => {
+                                <input required type="file" className='fileUpload' onChange={(e) => {
                                     console.log(e.target.files[0]);
                                     setFile(e.target.files[0]);
                                 }} />
